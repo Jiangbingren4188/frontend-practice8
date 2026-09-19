@@ -1,3 +1,71 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #f5f2ec;
+}
+
+main h1 {
+  padding-left: 0.75rem;
+  border-left: 4px solid #c9a227;
+}
+
+.hero {
+  padding: 2.5rem 1.5rem;
+  background-color: #212529;
+  color: #f8f9fa;
+  border-radius: 0.5rem;
+}
+
+.hero h1 {
+  color: #e3c25a;
+}
+
+.hero img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.card {
+  transition: transform 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 575.98px) {
+  .hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  main h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  main h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero {
+    padding: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero img {
+    max-height: 420px;
+    object-fit: cover;
+  }
 }
