@@ -27,9 +27,29 @@
 
   <main class="container my-4">
     <h1>自习室</h1>
-    <p>这里是自习室模块占位文字，后续展示座位占用情况。</p>
+    <div class="row g-2 my-3">
+      <div class="col-6 col-md-3">
+        <select id="floor-filter" class="form-select">
+          <option value="all">全部楼层</option>
+          <option value="一楼">一楼</option>
+          <option value="二楼">二楼</option>
+          <option value="三楼">三楼</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3">
+        <select id="status-filter" class="form-select">
+          <option value="all">全部状态</option>
+          <option value="开放">开放</option>
+          <option value="已满">已满</option>
+          <option value="关闭">关闭</option>
+        </select>
+      </div>
+    </div>
+    <div class="row g-3" id="room-list"></div>
+    <p id="empty-tip" class="text-muted" hidden>没有符合条件的自习室</p>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/studyroom.js"></script>
 </body>
 </html>

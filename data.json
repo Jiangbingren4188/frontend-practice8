@@ -1,0 +1,13 @@
+{
+  "title": "各自习室使用量（本周）",
+  "unit": "人次",
+  "source": "数据来源：课程统一数据集",
+  "rooms": [
+    { "name": "A101", "usage": 320 },
+    { "name": "A102", "usage": 260 },
+    { "name": "B201", "usage": 410 },
+    { "name": "B202", "usage": 180 },
+    { "name": "C301", "usage": 350 },
+    { "name": "C302", "usage": 290 }
+  ]
+}
