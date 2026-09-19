@@ -1,22 +1,19 @@
-const battles = [
-  { id: 1, name: '帕甸平原遭遇战', chapter: '第一章', enemy: '帝国西境军团', result: '胜利', troops: 120, loss: 18 },
-  { id: 2, name: '围攻加伦多城堡', chapter: '第一章', enemy: '加伦多守军', result: '胜利', troops: 200, loss: 55 },
-  { id: 3, name: '雪岭伏击战', chapter: '第二章', enemy: '斯特吉亚游骑', result: '失败', troops: 90, loss: 47 },
-  { id: 4, name: '河谷会战', chapter: '第二章', enemy: '瓦兰迪亚重骑', result: '胜利', troops: 260, loss: 88 },
-  { id: 5, name: '北境攻城战', chapter: '第三章', enemy: '斯特吉亚军', result: '失败', troops: 300, loss: 160 }
-];
-
-let nextId = 6;
+let battles = [];
+let nextId = 1;
 const state = { chapter: 'all', result: 'all' };
 
 const chapterFilter = document.querySelector('#chapter-filter');
 const resultFilter = document.querySelector('#result-filter');
 const list = document.querySelector('#battle-list');
 const emptyTip = document.querySelector('#empty-tip');
+const loadStatus = document.querySelector('#load-status');
 const form = document.querySelector('#battle-form');
 const formTitle = document.querySelector('#form-title');
 const formTip = document.querySelector('#form-tip');
 const resetBtn = document.querySelector('#reset-btn');
+const clearBtn = document.querySelector('#clear-btn');
+
+const persist = () => DATASET.save(battles);
 
 const render = () => {
   list.innerHTML = '';
@@ -25,6 +22,7 @@ const render = () => {
     (state.result === 'all' || b.result === state.result)
   );
   emptyTip.hidden = shown.length > 0;
+  emptyTip.textContent = battles.length === 0 ? '暂无战报数据' : '没有符合条件的战报';
   shown.forEach(b => {
     const col = document.createElement('div');
     col.className = 'col-md-6 col-lg-4';
@@ -89,6 +87,7 @@ const removeBattle = (id) => {
   if (!confirm('确定删除「' + b.name + '」的战报吗？')) return;
   const index = battles.findIndex(item => item.id === id);
   battles.splice(index, 1);
+  persist();
   if (document.querySelector('#battle-id').value === String(id)) resetForm();
   render();
 };
@@ -104,6 +103,12 @@ resultFilter.addEventListener('change', () => {
 });
 
 resetBtn.addEventListener('click', resetForm);
+
+clearBtn.addEventListener('click', () => {
+  if (!confirm('清除本地保存的战报数据，恢复为初始数据集？')) return;
+  DATASET.clear();
+  location.reload();
+});
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -135,8 +140,23 @@ form.addEventListener('submit', (e) => {
     const target = battles.find(item => item.id === Number(idValue));
     Object.assign(target, data);
   }
+  persist();
   resetForm();
   render();
 });
 
-render();
+const init = async () => {
+  loadStatus.hidden = false;
+  loadStatus.textContent = '数据加载中...';
+  try {
+    battles = await DATASET.load();
+    loadStatus.hidden = true;
+    nextId = battles.reduce((max, b) => Math.max(max, b.id), 0) + 1;
+  } catch (error) {
+    loadStatus.textContent = '数据加载失败：' + error.message;
+    battles = [];
+  }
+  render();
+};
+
+init();

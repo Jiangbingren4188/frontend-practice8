@@ -1,0 +1,10 @@
+{
+  "series": "织丰游玩系列",
+  "battles": [
+    { "id": 1, "name": "帕甸平原遭遇战", "chapter": "第一章", "enemy": "帝国西境军团", "result": "胜利", "troops": 120, "loss": 18 },
+    { "id": 2, "name": "围攻加伦多城堡", "chapter": "第一章", "enemy": "加伦多守军", "result": "胜利", "troops": 200, "loss": 55 },
+    { "id": 3, "name": "雪岭伏击战", "chapter": "第二章", "enemy": "斯特吉亚游骑", "result": "失败", "troops": 90, "loss": 47 },
+    { "id": 4, "name": "河谷会战", "chapter": "第二章", "enemy": "瓦兰迪亚重骑", "result": "胜利", "troops": 260, "loss": 88 },
+    { "id": 5, "name": "北境攻城战", "chapter": "第三章", "enemy": "斯特吉亚军", "result": "失败", "troops": 300, "loss": 160 }
+  ]
+}
