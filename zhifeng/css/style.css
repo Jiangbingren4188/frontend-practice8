@@ -2,6 +2,10 @@ body {
   background-color: #f5f2ec;
 }
 
+.chart-box {
+  height: 360px;
+}
+
 main h1 {
   padding-left: 0.75rem;
   border-left: 4px solid #c9a227;
