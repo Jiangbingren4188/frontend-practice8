@@ -6,6 +6,10 @@ body {
   height: 360px;
 }
 
+.scene-box {
+  height: 480px;
+}
+
 main h1 {
   padding-left: 0.75rem;
   border-left: 4px solid #c9a227;
